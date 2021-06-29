@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class App {
+
+    start()
+    main()
+}
+
+class SaveFile {
+
+Path defaultPath = userRoot
+Path filePath = userInput
+loadFile() - sets filePath
+saveFile() - save to filePath
+}
+
+class List {
+
+String titleOf
+ArrayList todoList
+}
+
+class Todo {
+
+String reminderText
+Date dueDate
+Boolean completed
+
+writeReminder()
+setDueDate()
+isComplete()
+isIncomplete()
+}
+
+
+
+
+
+@enduml

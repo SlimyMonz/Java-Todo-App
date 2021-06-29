@@ -1,8 +1,13 @@
+/*
+ * UCF COP3330 Summer 2021 Assignment Solution
+ * Copyright 2021 Harry Hocker
+ */
+
 plugins {
 
     id 'java'
     id 'application' //needed for TASKS on sidebar
-    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
 group 'org.monz'
@@ -30,5 +35,8 @@ javafx {
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
+
+
+
 //needed for Application -> Run
-mainClassName = 'HelloFX'
+mainClassName = 'ucf.assignments.App'
