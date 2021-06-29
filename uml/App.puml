@@ -11,26 +11,41 @@ class SaveFile {
 
 Path defaultPath = userRoot
 Path filePath = userInput
+
 loadFile() - sets filePath
 saveFile() - save to filePath
+
+
 }
 
-class List {
+class TodoList {
+String nameOfList
+ArrayList<Todo> todoList
 
-String titleOf
-ArrayList todoList
+setTitle()
+getTitle()
+
+addTodo()
+delTodo()
+
 }
 
 class Todo {
 
-String reminderText
 Date dueDate
+String todoText
 Boolean completed
 
-writeReminder()
+setTodoText()
 setDueDate()
-isComplete()
-isIncomplete()
+setCompletedTrue()
+setCompletedFalse()
+
+getDueDate()
+getTodoText()
+getCompleted()
+
+
 }
 
 
