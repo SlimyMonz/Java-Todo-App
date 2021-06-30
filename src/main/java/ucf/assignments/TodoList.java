@@ -15,23 +15,27 @@ public class TodoList {
 	public TodoList() {
 		// set default name
 		// create new empty ArrayList
-
 	}
 
 	public void getListName() {
-
+		// return String listName
 	}
 
 	public void setListName() {
+		// using user input in JavaFX, change listName string
+		// return void
 
 	}
 
 	public void addTodo() {
-
+		// create new todo object
+		//  append to Arraylist
+		// return void
 	}
 
 	public void delTodo() {
-
+		// remove todo object
+		// return void
 	}
 
 

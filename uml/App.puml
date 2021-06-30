@@ -7,12 +7,12 @@ class App {
     -main()
 }
 
-class SaveFile {
+class ManageFile {
 
     -String fileName
     -Path filePath
 
-    +SaveFile()
+    +ManageFile()
 
     +setFileName()
     +getFileName()
@@ -71,10 +71,11 @@ class Todo {
 
 
 JavaFX.GUI = App
+JavaFX.GUI = TodoListMap
 
-App <--|> SaveFile
-SaveFile --|> TodoListMap
-SaveFile --|> TodoList
+App <--|> ManageFile
+ManageFile --|> TodoListMap
+ManageFile --|> TodoList
 Todo <|-> TodoList
 TodoList <|-> TodoListMap
 
