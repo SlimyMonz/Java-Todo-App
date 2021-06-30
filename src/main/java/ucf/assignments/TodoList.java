@@ -34,13 +34,8 @@ public class TodoList {
 	}
 
 	public void delTodo() {
-		// remove todo object
+		// remove todo object from arraylist
 		// return void
 	}
-
-
-
-
-
 
 }

@@ -43,8 +43,8 @@ class TodoList {
 
     +TodoList()
 
-    +setTitle()
-    +getTitle()
+    +setListName()
+    +getListName()
 
     +addTodo()
     +delTodo()
