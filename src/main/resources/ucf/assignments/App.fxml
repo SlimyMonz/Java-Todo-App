@@ -24,7 +24,7 @@
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <TableView accessibleRole="CONTEXT_MENU" editable="true" prefHeight="449.0" prefWidth="467.0" snapToPixel="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView accessibleRole="CONTEXT_MENU" editable="true" prefHeight="449.0" prefWidth="396.0" snapToPixel="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
                 <TableColumn maxWidth="300.0" minWidth="120.0" prefWidth="-1.0" text="Due" />
                 <TableColumn maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="280.0" text="Todo" />
@@ -63,8 +63,8 @@
           </Menu>
             <Menu mnemonicParsing="false" text="View">
               <items>
-                <MenuItem fx:id="showCompleted" mnemonicParsing="false" text="Show Completed" />
-                  <MenuItem fx:id="hideCompleted" mnemonicParsing="false" text="Hide Completed" />
+                <MenuItem mnemonicParsing="false" text="Show Completed" />
+                  <MenuItem mnemonicParsing="false" text="Hide Completed" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -78,11 +78,11 @@
    <left>
     <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <TitledPane alignment="CENTER" animated="false" collapsible="false" text="Lists" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TitledPane alignment="CENTER" animated="false" collapsible="false" prefHeight="470.5" prefWidth="292.5" text="Lists" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
                 <AnchorPane>
                      <children>
-                        <ListView editable="true" fixedCellSize="30.0" layoutX="-31.0" layoutY="52.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <ListView editable="true" fixedCellSize="30.0" layoutX="-31.0" layoutY="52.0" prefHeight="421.0" prefWidth="269.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
               </content>
@@ -93,11 +93,11 @@
    <bottom>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="0.0" minWidth="100.0" prefWidth="0.0" />
-            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="0.0" minWidth="100.0" prefWidth="97.0" />
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="90.0" />
-          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="0.0" minWidth="140.0" prefWidth="0.0" />
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="0.0" minWidth="140.0" percentWidth="0.0" prefWidth="0.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="148.0" minWidth="100.0" prefWidth="145.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="141.0" minWidth="91.0" prefWidth="94.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="38.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="139.0" minWidth="122.0" prefWidth="137.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="136.0" minWidth="123.0" percentWidth="0.0" prefWidth="125.0" />
             <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="64.0" minWidth="64.0" percentWidth="0.0" />
             <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="64.0" minWidth="64.0" percentWidth="0.0" />
         </columnConstraints>
