@@ -19,7 +19,7 @@ public class Todo {
 		// set default Boolean to false
 	}
 
-	public Date getDueDate() {
+	public void getDueDate() {
 
 	}
 
@@ -27,7 +27,7 @@ public class Todo {
 
 	}
 
-	public String getTodoText() {
+	public void getTodoText() {
 
 	}
 
@@ -35,7 +35,7 @@ public class Todo {
 
 	}
 
-	public Boolean getCompleted() {
+	public void getCompleted() {
 
 	}
 

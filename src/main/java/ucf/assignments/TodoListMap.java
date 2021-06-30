@@ -9,7 +9,7 @@ import java.util.TreeMap;
 
 public class TodoListMap {
 
-	TreeMap<Integer, TodoList> listTreeMap;
+	TreeMap<String, TodoList> listTreeMap;
 
 	public TodoListMap() {
 		// I don't think any code is needed to generate.

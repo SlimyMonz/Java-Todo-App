@@ -14,12 +14,15 @@ class TodoListMapTest {
 	@Test
 	void addTodoList() {
 		// appends a new todolist using:
-		// Integer = TreeMap size (or how many objects it has)
-		// Value = "TodoList" + Integer (from above)
+		// String = TodoList name
+		// Value = a new TodoList object
+		// assert the integer and value match
 	}
 
 	@Test
 	void delTodoList() {
 		// removes the todolist user selected
+		// assert it no longer exists
+
 	}
 }

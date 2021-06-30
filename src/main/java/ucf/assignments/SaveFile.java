@@ -19,27 +19,19 @@ public class SaveFile {
 		// generate file
 	}
 
-	public String getFileName() {
+	public void getFileName() {
 
 	}
 
-	public void setFileName(String fileName) {
+	public void setFileName() {
 
 	}
 
-	public Path getDefaultPath() {
+	public void getFilePath() {
 
 	}
 
-	public void setDefaultPath(Path defaultPath) {
-
-	}
-
-	public Path getFilePath() {
-
-	}
-
-	public void setFilePath(Path filePath) {
+	public void setFilePath() {
 
 	}
 	

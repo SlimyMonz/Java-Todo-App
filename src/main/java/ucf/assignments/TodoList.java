@@ -18,11 +18,11 @@ public class TodoList {
 
 	}
 
-	public String getListName() {
+	public void getListName() {
 
 	}
 
-	public void setListName(String listName) {
+	public void setListName() {
 
 	}
 
