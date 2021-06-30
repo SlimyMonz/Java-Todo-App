@@ -3,52 +3,80 @@
 
 class App {
 
-    start()
-    main()
+    -start()
+    -main()
 }
 
 class SaveFile {
 
-Path defaultPath = userRoot
-Path filePath = userInput
+    -String fileName
+    -Path filePath
 
-loadFile() - sets filePath
-saveFile() - save to filePath
+    -SaveFile()
 
+    +setFileName()
+    +getFileName()
+
+    +setFilePath()
+    +getFilePath()
+
+    +loadFile()
+    +saveFile()
+
+    +loadList()
+    +saveList()
 
 }
 
+class TodoListMap {
+    -Treemap<TodoList>
+
+    -TodoListMap()
+
+    +addTodoList()
+    +delTodoList()
+}
+
 class TodoList {
-String nameOfList
-ArrayList<Todo> todoList
+    -String nameOfList
+    -ArrayList<Todo> todoList
 
-setTitle()
-getTitle()
+    -TodoList()
 
-addTodo()
-delTodo()
+    +setTitle()
+    +getTitle()
 
+    +addTodo()
+    +delTodo()
 }
 
 class Todo {
 
-Date dueDate
-String todoText
-Boolean completed
+    -Date dueDate
+    -String todoText
+    -Boolean completed
 
-setTodoText()
-setDueDate()
-setCompletedTrue()
-setCompletedFalse()
+    -Todo()
 
-getDueDate()
-getTodoText()
-getCompleted()
+    +setTodoText()
+    +getTodoText()
 
+    +setDueDate()
+    +getDueDate()
+
+    +setCompleted(Boolean)
+    +getCompleted()
 
 }
 
 
+JavaFX.GUI = App
+
+App <--|> SaveFile
+SaveFile --|> TodoListMap
+SaveFile --|> TodoList
+Todo <|-> TodoList
+TodoList <|-> TodoListMap
 
 
 

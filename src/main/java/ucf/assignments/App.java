@@ -25,13 +25,13 @@ public class App extends Application {
 
 		/*
 		* Parent variable pointed to path of the resources folder and the fxml file.
-		* stage set the title for the program as Todo List
+		* stage set the title for the program as Todo TodoList
 		* stage set the default app scene size with a reference to the Parent variable
 		* stage show method
 		* */
 
 		Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("App.fxml")));
-		stage.setTitle("Todo List");
+		stage.setTitle("Todo TodoList");
 		stage.setScene(new Scene(root));
 		stage.show();
 
