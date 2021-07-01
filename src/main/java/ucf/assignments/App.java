@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-/* The purpose of this file is to load the FXML file and launch the program */
+/* The purpose of this is to load the FXML file and launch the program */
 
 
 public class App extends Application {
