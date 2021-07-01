@@ -21,8 +21,8 @@ public class TodoList {
 		// return String listName
 	}
 
-	public void setListName() {
-		// using user input in JavaFX, change listName string
+	public void setListName(String string) {
+		// change listName string
 		// return void
 
 	}

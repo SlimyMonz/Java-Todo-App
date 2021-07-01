@@ -18,7 +18,7 @@ public class TodoListMap {
 		// I don't believe any code is needed to generate. There will only be one TreeMap.
 	}
 
-	@FXML
+
 	public void addTodoList() {
 		// create new TodoList object
 		// append it to TreeMap

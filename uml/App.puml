@@ -7,6 +7,22 @@ class App {
     -main()
 }
 
+class Controller {
+
+    +clickAddList()
+    +clickDeleteList()
+    +clickShowCompleted()
+    +clickHideCompleted()
+    +clickPlus()
+    +clickMinus()
+    +menuLoadFile()
+    +menuLoadList()
+    +menuSaveFile()
+    +menuSaveList()
+    +menuQuit()
+
+}
+
 class ManageFile {
 
     -String fileName
@@ -71,13 +87,18 @@ class Todo {
 
 
 JavaFX.GUI = App
-JavaFX.GUI = TodoListMap
+JavaFX.GUI = Controller
 
 App <--|> ManageFile
 ManageFile --|> TodoListMap
 ManageFile --|> TodoList
 Todo <|-> TodoList
 TodoList <|-> TodoListMap
+
+ManageFile = Controller
+TodoList ==  Controller
+TodoListMap = Controller
+
 
 
 

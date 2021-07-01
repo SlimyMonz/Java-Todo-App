@@ -20,7 +20,7 @@
   ~ Copyright 2021 Harry Hocker
   -->
 
-<BorderPane prefHeight="501.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.App">
+<BorderPane prefHeight="501.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
@@ -43,28 +43,28 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
                   <SeparatorMenuItem mnemonicParsing="false" />
-              <MenuItem mnemonicParsing="false" text="Load File" />
-                  <MenuItem mnemonicParsing="false" text="Load List" />
+              <MenuItem mnemonicParsing="false" onAction="#menuLoadFile" text="Load File" />
+                  <MenuItem mnemonicParsing="false" onAction="#menuLoadList" text="Load List" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Save File" />
-                  <MenuItem mnemonicParsing="false" text="Save List" />
+                  <MenuItem mnemonicParsing="false" onAction="#menuSaveFile" text="Save File" />
+                  <MenuItem mnemonicParsing="false" onAction="#menuSaveList" text="Save List" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Quit" />
+                  <MenuItem mnemonicParsing="false" onAction="#menuQuit" text="Quit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-                  <MenuItem mnemonicParsing="false" text="New List" />
-                  <MenuItem mnemonicParsing="false" text="New Todo" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickAddList" text="New List" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickPlus" text="New Todo" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-              <MenuItem mnemonicParsing="false" text="Delete List" />
-                  <MenuItem mnemonicParsing="false" text="Delete Todo" />
+              <MenuItem mnemonicParsing="false" onAction="#clickDeleteList" text="Delete List" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickMinus" text="Delete Todo" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="View">
               <items>
-                <MenuItem mnemonicParsing="false" text="Show Completed" />
-                  <MenuItem mnemonicParsing="false" text="Hide Completed" />
+                <MenuItem mnemonicParsing="false" onAction="#clickShowCompleted" text="Show Completed" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickHideCompleted" text="Hide Completed" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -105,12 +105,12 @@
           <RowConstraints vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="+" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
-            <Button layoutX="370.0" layoutY="17.0" mnemonicParsing="false" text="-" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Show Completed" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" text="Hide Completed" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" text="Add List" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
-            <Button mnemonicParsing="false" text="Delete List" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+            <Button mnemonicParsing="false" onAction="#clickPlus" text="+" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+            <Button layoutX="370.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickMinus" text="-" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickShowCompleted" text="Show Completed" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#clickHideCompleted" text="Hide Completed" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#clickAddList" text="Add List" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+            <Button mnemonicParsing="false" onAction="#clickDeleteList" text="Delete List" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
          </children>
       </GridPane>
    </bottom>

@@ -21,52 +21,38 @@ public class ManageFile {
 	}
 
 	public void getFileName() {
-		// return String, not void
 		// returns the fileName string for this object
-
 	}
 
-	public void setFileName() {
-		// uses javaFX to allow userinput to change the filename within this method
+	public void setFileName(String fileName) {
+		// uses parameter to set name of file
 		// returns void
 	}
 
 	public void getFilePath() {
-		// retrieves the filePath string from object
+		// retrieves the filePath string from object this.filePath (?)
 		// returns Path
 	}
 
-	public void setFilePath() {
-		// takes input from JavaFX GUI File Chooser
-		// sets filePath String
+	public void setFilePath(Path filePath) {
+		// sets filePath Path value
 		// returns void
 	}
 	
-	public void loadFile() {
-		// use getFilePath and store
-		// use try/catch to load file from given filepath into new TreeMap
+	public void loadFile(Path filePath) {
+		// use try/catch to load all lists from given filepath into new TreeMap
 	}
 
-	public void saveFile() {
-		// ask for setFilePath using JavaFX
-		// erase contents if another file exists
-		// write new contents to file
-		// use setFileName if needed
+	public void saveFile(Path filePath) {
+		// save a bunch of lists at parameter path with this.listName per list
 	}
 
-	public void loadList() {
-		// use getFilePath
-		// append to current/new TreeMap
-		// return void
+	public void loadList(String fileName, Path filePath) {
+		// use try/catch to load single list from given file path
 	}
 
-	public void saveList() {
-		// use setFilePath()
-		// use setFileName()
-		// if List file already exists, erase
-		// create file
-		// return void
-
+	public void saveList(String fileName, Path filePath) {
+		// save list object to filePath
 	}
 
 }

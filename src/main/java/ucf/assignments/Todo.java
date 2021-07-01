@@ -23,32 +23,27 @@ public class Todo {
 		// return Date value of object
 	}
 
-	public void setDueDate(Date dueDate) {
-		// using Date picker from JavaFX
-		// change Date value
+	public void setDueDate(Date date) {
+		// change Date value of object
 		// return void
-
 	}
 
 	public void getTodoText() {
 		// return todoText String
-
 	}
 
 	public void setTodoText(String todoText) {
-		// using JavaFX user editing
+		// from string parameter
 		// change String value
 		// return void
-
 	}
 
 	public void getCompleted() {
 		// return boolean of completed value
-
 	}
 
-	public void setCompleted(Boolean completed) {
-		// set value based off of boolean 'completed' taken in
+	public void setCompleted(Boolean bool) {
+		// set value based off of boolean parameter
 		// return void
 	}
 

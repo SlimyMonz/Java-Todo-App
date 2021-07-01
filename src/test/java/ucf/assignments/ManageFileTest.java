@@ -55,8 +55,9 @@ class ManageFileTest {
 
 	@Test
 	public void saveList() {
-		// get list name
-		// saves list to a file named after the list
-		// assert list file exists
+		// get list name from given string
+		// saves list to a file named after the list name
+		// assert list file exists with name
 	}
+
 }
