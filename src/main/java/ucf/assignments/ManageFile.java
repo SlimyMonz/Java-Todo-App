@@ -14,14 +14,15 @@ public class ManageFile {
 	private Path filePath;
 
 	public ManageFile() {
-		// create new TreeMap
+		// create TodoListArray
 		// generate a default path based off of user PC
 		// set filename to "default_save"
 		// generate file
 	}
 
-	public void getFileName() {
+	public String getFileName() {
 		// returns the fileName string for this object
+		return "";
 	}
 
 	public void setFileName(String fileName) {
@@ -29,13 +30,14 @@ public class ManageFile {
 		// returns void
 	}
 
-	public void getFilePath() {
+	public Path getFilePath() {
 		// retrieves the filePath string from object this.filePath (?)
 		// returns Path
+		return Path.of("");
 	}
 
 	public void setFilePath(Path filePath) {
-		// sets filePath Path value
+		// sets filePath Path value of object based on parameter
 		// returns void
 	}
 	
@@ -44,7 +46,8 @@ public class ManageFile {
 	}
 
 	public void saveFile(Path filePath) {
-		// save a bunch of lists at parameter path with this.listName per list
+		// for each item in TodoListArray:
+		// save each object filepath with this.listName
 	}
 
 	public void loadList(String fileName, Path filePath) {
@@ -52,7 +55,7 @@ public class ManageFile {
 	}
 
 	public void saveList(String fileName, Path filePath) {
-		// save list object to filePath
+		// save list object to filePath location
 	}
 
 }

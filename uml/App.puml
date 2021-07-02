@@ -44,10 +44,10 @@ class ManageFile {
 
 }
 
-class TodoListMap {
+class TodoListArray {
     -Treemap<String, TodoList>
 
-    +TodoListMap()
+    +TodoListArray()
 
     +addTodoList()
     +delTodoList()
@@ -90,14 +90,14 @@ JavaFX.GUI = App
 JavaFX.GUI = Controller
 
 App <--|> ManageFile
-ManageFile --|> TodoListMap
+ManageFile --|> TodoListArray
 ManageFile --|> TodoList
 Todo <|-> TodoList
-TodoList <|-> TodoListMap
+TodoList <|-> TodoListArray
 
 ManageFile = Controller
 TodoList ==  Controller
-TodoListMap = Controller
+TodoListArray = Controller
 
 
 

@@ -12,11 +12,11 @@ public class Controller {
 	// on user button press:
 
 	public void clickAddList(ActionEvent actionEvent) {
-		// run TodoListMap.addTodoList()
+		// run TodoListArray.addTodoList()
 	}
 
 	public void clickDeleteList(ActionEvent actionEvent) {
-		// run TodoListMap.delTodoList()
+		// run TodoListArray.delTodoList()
 	}
 
 	public void clickShowCompleted(ActionEvent actionEvent) {

@@ -19,8 +19,9 @@ public class Todo {
 		// set default Boolean to false
 	}
 
-	public void getDueDate() {
+	public Date getDueDate() {
 		// return Date value of object
+		return dueDate;
 	}
 
 	public void setDueDate(Date date) {
@@ -28,8 +29,9 @@ public class Todo {
 		// return void
 	}
 
-	public void getTodoText() {
+	public String getTodoText() {
 		// return todoText String
+		return todoText;
 	}
 
 	public void setTodoText(String todoText) {
@@ -38,8 +40,9 @@ public class Todo {
 		// return void
 	}
 
-	public void getCompleted() {
+	public Boolean getCompleted() {
 		// return boolean of completed value
+		return completed;
 	}
 
 	public void setCompleted(Boolean bool) {

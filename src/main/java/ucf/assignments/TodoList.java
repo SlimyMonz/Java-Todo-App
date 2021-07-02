@@ -7,6 +7,7 @@ package ucf.assignments;
 
 import java.util.ArrayList;
 
+
 public class TodoList {
 
 	private String listName;
@@ -17,8 +18,9 @@ public class TodoList {
 		// create new empty ArrayList
 	}
 
-	public void getListName() {
+	public String getListName() {
 		// return String listName
+		return "";
 	}
 
 	public void setListName(String string) {
