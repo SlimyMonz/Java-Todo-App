@@ -21,7 +21,7 @@ public class Todo {
 
 	public Date getDueDate() {
 		// return Date value of object
-		return dueDate;
+		return dueDate; // this is not a literal, but I don't believe Date classes can have literals
 	}
 
 	public void setDueDate(Date date) {
@@ -31,7 +31,7 @@ public class Todo {
 
 	public String getTodoText() {
 		// return todoText String
-		return todoText;
+		return "";
 	}
 
 	public void setTodoText(String todoText) {
@@ -42,7 +42,7 @@ public class Todo {
 
 	public Boolean getCompleted() {
 		// return boolean of completed value
-		return completed;
+		return true; // boolean literal for now
 	}
 
 	public void setCompleted(Boolean bool) {
