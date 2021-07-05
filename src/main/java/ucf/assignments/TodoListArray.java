@@ -24,13 +24,11 @@ public class TodoListArray {
 		// create new TodoList
 		// append it to List
 		// this.TodoListArray.add(new Todolist())
-		// return void
 
 	}
 
 	public void delTodoList() {
 		// remove TodoList object from List
 		// this.TodoListArray.remove(selected TodoList)
-		// return void
 	}
 }
