@@ -14,10 +14,10 @@ public class ManageFile {
 	private Path filePath;
 
 	public ManageFile() {
-		// create TodoListArray
-		// generate a default path based off of user PC
-		// set filename to "default_save"
-		// generate file
+		// new TodoListArray
+		// generate a default path based off of user PC: this.DefaultPath = thisPC.root()
+		// set this.filename to "default_save"
+		// new File.txt
 	}
 
 	public String getFileName() {
@@ -26,23 +26,25 @@ public class ManageFile {
 	}
 
 	public void setFileName(String fileName) {
-		// uses parameter to set name of file
+		// this.fileName equals fileName
 		// returns void
 	}
 
 	public Path getFilePath() {
-		// retrieves the filePath string from object this.filePath (?)
-		// returns Path
+		// if filePath.isNotEmpty() 
+		// return filePath
+		// else return defaultPath
 		return Path.of("");
 	}
 
 	public void setFilePath(Path filePath) {
-		// sets filePath Path value of object based on parameter
+		// this.filePath = filePath
 		// returns void
 	}
 	
 	public void loadFile(Path filePath) {
 		// use try/catch to load all lists from given filepath into new TreeMap
+		// try { load file from filePath } catch no file exists {}
 	}
 
 	public void saveFile(Path filePath) {
@@ -52,10 +54,11 @@ public class ManageFile {
 
 	public void loadList(String fileName, Path filePath) {
 		// use try/catch to load single list from given file path
+		// try { load fileName from filePath } catch Exception {}
 	}
 
 	public void saveList(String fileName, Path filePath) {
-		// save list object to filePath location
+		// save file as fileName + ".txt" to filePath
 	}
 
 }
