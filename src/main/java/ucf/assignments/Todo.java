@@ -25,7 +25,7 @@ public class Todo {
 	}
 
 	public void setDueDate(Date date) {
-		// change Date value of object
+		// this.dueDate = date
 		// return void
 	}
 
@@ -35,8 +35,7 @@ public class Todo {
 	}
 
 	public void setTodoText(String todoText) {
-		// from string parameter
-		// change String value
+		// this.todoText = todoText
 		// return void
 	}
 
@@ -47,6 +46,7 @@ public class Todo {
 
 	public void setCompleted(Boolean bool) {
 		// set value based off of boolean parameter
+		// this.setCompleted = bool
 		// return void
 	}
 
