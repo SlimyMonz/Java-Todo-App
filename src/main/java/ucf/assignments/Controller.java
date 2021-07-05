@@ -34,9 +34,8 @@ public class Controller {
 	}
 
 	public void clickMinus(ActionEvent actionEvent) {
-		// figure out what list is already displaying info
-		// figure out which object is selected
-		// run TodoList.delTodo() to selected object
+		// if TodoItem is selected:
+		// TodoList.delTodo(selected TodoItem)
 	}
 
 
