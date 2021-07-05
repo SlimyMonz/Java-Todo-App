@@ -70,7 +70,7 @@ public class Controller {
 
 	@FXML
 	public void menuQuit(ActionEvent actionEvent) {
-		// put code here that stops the app from running (don't yet know what that is)
-		// prompt to save before quitting? idk if I'm smart enough for that
+		// prompt to save before quitting
+		// Application.stop() 
 	}
 }
