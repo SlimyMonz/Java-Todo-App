@@ -25,6 +25,7 @@ public class TodoList {
 
 	public void setListName(String string) {
 		// change listName string
+		// this.listName = string
 		// return void
 
 	}
@@ -32,11 +33,13 @@ public class TodoList {
 	public void addTodo() {
 		// create new todo object
 		//  append to Arraylist
+		// ArrayList.add(new todo())
 		// return void
 	}
 
 	public void delTodo() {
 		// remove todo object from arraylist
+		// ArrayList.remove(selected todo)
 		// return void
 	}
 
