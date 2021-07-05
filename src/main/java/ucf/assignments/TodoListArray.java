@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class TodoListArray {
 
-	// this allows the map to be organized by the KEY value
 	ArrayList<TodoList> TodoListArray;
 
 
