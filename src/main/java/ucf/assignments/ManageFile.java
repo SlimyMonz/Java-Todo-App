@@ -27,7 +27,6 @@ public class ManageFile {
 
 	public void setFileName(String fileName) {
 		// this.fileName equals fileName
-		// returns void
 	}
 
 	public Path getFilePath() {
@@ -39,7 +38,6 @@ public class ManageFile {
 
 	public void setFilePath(Path filePath) {
 		// this.filePath = filePath
-		// returns void
 	}
 	
 	public void loadFile(Path filePath) {
