@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class TodoListArray {
 
-	ArrayList<TodoList> TodoListArray;
+	private ArrayList<TodoList> TodoListArray;
 
 
 	public TodoListArray() {
