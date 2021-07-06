@@ -5,19 +5,20 @@
 
 package ucf.assignments;
 
-
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.event.EventHandler;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
+import javafx.scene.control.TableColumn;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+
 
 public class Controller {
 	@FXML
@@ -31,11 +32,11 @@ public class Controller {
 	@FXML
 	private ObservableList<Todo> data;
 	@FXML
-	private TableColumn<Todo, DatePicker> dueDateColumn;
+	private TableColumn<Todo, String> dueDateColumn;
 	@FXML
 	private TableColumn<Todo, String> todoFieldColumn;
 	@FXML
-	private TableColumn<Todo, CheckBox> completedColumn;
+	private TableColumn<Todo, Boolean> boolColumn;
 
 
 
@@ -44,30 +45,40 @@ public class Controller {
 	public void initialize() {
 
 		// make tableViewContainer editable anytime
-		this.tableViewContainer.setEditable(true);
+		tableViewContainer.setEditable(true);
 
 		// make todoLists an FXCollections with an observable array list
-		this.data = FXCollections.observableArrayList();
+		data = FXCollections.observableArrayList();
 
 		// use cell factory to set column data types
-		this.dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-
-
-		this.todoFieldColumn.setCellValueFactory(new PropertyValueFactory<>("todoText"));
-		todoFieldColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		todoFieldColumn.setOnEditCommit(
-				t -> ( t.getTableView().getItems().get(
-						t.getTablePosition().getRow())
-				).setTodoText(t.getNewValue())
+		dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+		dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		dueDateColumn.setOnEditCommit(
+				cell -> ( cell.getTableView().getItems().get(
+						cell.getTablePosition().getRow())
+				).setTodoText(cell.getNewValue())
 		);
 
 
-		completedColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+		todoFieldColumn.setCellValueFactory(new PropertyValueFactory<>("todoText"));
+		todoFieldColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		todoFieldColumn.setOnEditCommit(
+				date -> ( date.getTableView().getItems().get(
+						date.getTablePosition().getRow())
+				).setTodoText(date.getNewValue())
+		);
+
+		// FUCK ME THIS BOOLEAN CHECKBOX SHIT IS HARD
+
+		boolColumn.setCellFactory(boolColumn -> new CheckBoxTableCell<>());
+		boolColumn.setCellValueFactory(param -> param.getValue().getBool());
+		// possibly replace this with drop-down menu options instead
+
 
 		// set items for listViewContainer from ObservableList
-		this.tableViewContainer.setItems(data);
+		tableViewContainer.setItems(data);
 		// add all the columns to the container
-		this.tableViewContainer.getColumns().addAll(dueDateColumn, todoFieldColumn, completedColumn);
+		tableViewContainer.getColumns().addAll(dueDateColumn, todoFieldColumn, boolColumn);
 
 	}
 
@@ -96,10 +107,16 @@ public class Controller {
 	@FXML
 	public void clickNewTodo(ActionEvent actionEvent) {
 		// add new object with the values selected in the bottom bar containers
+		if(dueDatePicker == null) {
 			data.add(new Todo(
-					dueDatePicker.getValue(),
-					todoField.getText(),
-					false));
+					LocalDate.now().toString(),
+					todoField.getText()));
+		} else {
+			data.add(new Todo(
+					dueDatePicker.getValue().toString(),
+					todoField.getText()));
+		}
+
 			// reset the date
 			dueDatePicker.getEditor().clear();
 			// reset text field
@@ -147,4 +164,6 @@ public class Controller {
 	@FXML
 	public void clickAbout(ActionEvent actionEvent) {
 	}
+
+
 }

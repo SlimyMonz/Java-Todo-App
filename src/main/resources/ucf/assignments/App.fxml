@@ -45,7 +45,7 @@
                           <columns>
                             <TableColumn fx:id="dueDateColumn" maxWidth="300.0" minWidth="120.0" prefWidth="-1.0" text="Due" />
                             <TableColumn fx:id="todoFieldColumn" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="280.0" text="Todo" />
-                              <TableColumn fx:id="completedColumn" maxWidth="200.0" minWidth="100.0" prefWidth="-1.0" text="Complete" />
+                              <TableColumn fx:id="boolColumn" maxWidth="200.0" minWidth="100.0" prefWidth="-1.0" text="Complete" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
