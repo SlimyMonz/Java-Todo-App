@@ -9,23 +9,28 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 import java.time.LocalDate;
 
 public class Controller {
-
 	@FXML
-	private ListView<TodoList> listViewContainer;
+	private TextField todoDescriptionField;
 	@FXML
-	private ObservableList<TodoList> todoLists;
+	private DatePicker dueDatePicker;
 	@FXML
-	private TableColumn<TodoList, LocalDate> dueDateColumn;
+	private TableView<Todo> tableViewContainer;
 	@FXML
-	private TableColumn<TodoList, String> todoDescriptionColumn;
+	private ObservableList<Todo> todoLists;
 	@FXML
-	private TableColumn<TodoList, Boolean> completedColumn;
+	private TableColumn<Todo, LocalDate> dueDateColumn;
+	@FXML
+	private TableColumn<Todo, String> todoDescriptionColumn;
+	@FXML
+	private TableColumn<Todo, Boolean> completedColumn;
 
 
 	// on app start:
@@ -48,6 +53,7 @@ public class Controller {
 	@FXML
 	public void clickDeleteList(ActionEvent actionEvent) {
 		// run TodoListArray.delTodoList() on selected list
+		// if file exists based on listName, delete file and make blank file
 	}
 	
 	@FXML
@@ -61,13 +67,13 @@ public class Controller {
 	}
 
 	@FXML
-	public void clickPlus(ActionEvent actionEvent) {
+	public void clickNewTodo(ActionEvent actionEvent) {
 		// get selected list
 		// run Todolist.addTodo() to current displayed list
 		// add object to column views
 	}
 
-	public void clickMinus(ActionEvent actionEvent) {
+	public void clickDeleteTodo(ActionEvent actionEvent) {
 		// if TodoItem is selected:
 		// TodoList.delTodo(selected TodoItem)
 		// refresh column views
@@ -103,5 +109,9 @@ public class Controller {
 	public void menuQuit(ActionEvent actionEvent) {
 		// prompt to save before quitting
 		// Application.stop() to quit app
+	}
+
+	@FXML
+	public void clickAbout(ActionEvent actionEvent) {
 	}
 }

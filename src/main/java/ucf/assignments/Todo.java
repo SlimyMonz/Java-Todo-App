@@ -5,11 +5,12 @@
 
 package ucf.assignments;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Todo {
 
-	private Date dueDate;
+	private LocalDate dueDate;
 	private String todoText;
 	private Boolean completed;
 
@@ -17,34 +18,48 @@ public class Todo {
 		// set Date to blank
 		// set default string to blank ""
 		// set default Boolean to false
+		this.dueDate = LocalDate.now();
+		this.todoText = "";
+		this.completed = false;
 	}
 
-	public Date getDueDate() {
+	public Todo(LocalDate date, String todoText) {
+		// set Date to datepicker date from parameter
+		// set string to parameter from GUI
+		this.dueDate = date;
+		this.todoText = todoText;
+		this.completed = false;
+	}
+
+	public LocalDate getDueDate() {
 		// return Date value of object
 		return dueDate; // this is not a literal, but I don't believe Date classes can have literals
 	}
 
-	public void setDueDate(Date date) {
+	public void setDueDate(LocalDate date) {
 		// this.dueDate = date
+		this.dueDate = date;
 	}
 
 	public String getTodoText() {
 		// return todoText String
-		return "";
+		return this.todoText;
 	}
 
 	public void setTodoText(String todoText) {
 		// this.todoText equals given todoText String parameter
+		this.todoText = todoText;
 	}
 
 	public Boolean getCompleted() {
 		// return boolean of completed value
-		return true; // boolean literal for now
+		return this.completed; // boolean literal for now
 	}
 
 	public void setCompleted(Boolean bool) {
 		// set value based off of boolean parameter
 		// this.setCompleted = bool
+		this.completed = bool;
 	}
 
 }
