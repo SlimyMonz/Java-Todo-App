@@ -5,14 +5,14 @@
 
 package ucf.assignments;
 
+import javafx.scene.control.CheckBox;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Todo {
 
 	private LocalDate dueDate;
 	private String todoText;
-	private Boolean completed;
+	private final CheckBox value = new CheckBox();
 
 	public Todo() {
 		// set Date to blank
@@ -20,15 +20,15 @@ public class Todo {
 		// set default Boolean to false
 		this.dueDate = LocalDate.now();
 		this.todoText = "";
-		this.completed = false;
+		this.value.setSelected(false);
 	}
 
-	public Todo(LocalDate date, String todoText) {
+	public Todo(LocalDate date, String todoText, Boolean value) {
 		// set Date to datepicker date from parameter
 		// set string to parameter from GUI
 		this.dueDate = date;
 		this.todoText = todoText;
-		this.completed = false;
+		this.value.setSelected(value);
 	}
 
 	public LocalDate getDueDate() {
@@ -43,7 +43,7 @@ public class Todo {
 
 	public String getTodoText() {
 		// return todoText String
-		return this.todoText;
+		return todoText;
 	}
 
 	public void setTodoText(String todoText) {
@@ -51,15 +51,15 @@ public class Todo {
 		this.todoText = todoText;
 	}
 
-	public Boolean getCompleted() {
+	public CheckBox getValue() {
 		// return boolean of completed value
-		return this.completed; // boolean literal for now
+		return value; // boolean literal for now
 	}
 
-	public void setCompleted(Boolean bool) {
+	public void setValue(Boolean value) {
 		// set value based off of boolean parameter
 		// this.setCompleted = bool
-		this.completed = bool;
+		this.value.setSelected(value);
 	}
 
 }
