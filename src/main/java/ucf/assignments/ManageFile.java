@@ -5,58 +5,77 @@
 
 package ucf.assignments;
 
+import javafx.stage.FileChooser;
+
+import java.io.File;
 import java.nio.file.Path;
 
 public class ManageFile {
 
+	private FileChooser fileChooser;
 	private String fileName;
-	private Path defaultPath;
+	private final Path defaultPath = Path.of(System.getProperty("user.home"));
 	private Path filePath;
 
 	public ManageFile() {
-		// new TodoListArray
-		// generate a default path based off of user PC: this.DefaultPath = thisPC.root()
-		// set this.filename to "default_save"
-		// new File.txt
 	}
 
 	public String getFileName() {
 		// returns the fileName string for this object
-		return "";
+		return fileName;
 	}
 
 	public void setFileName(String fileName) {
 		// this.fileName equals fileName
+		this.fileName = fileName;
 	}
 
 	public Path getFilePath() {
 		// if filePath.isNotEmpty() 
 		// return filePath
 		// else return defaultPath
-		return Path.of("");
+		if (filePath == null) {
+			return defaultPath;
+		} else {
+			return filePath;
+		}
 	}
 
 	public void setFilePath(Path filePath) {
 		// this.filePath = filePath
 	}
 	
-	public void loadFile(Path filePath) {
-		// use try/catch to load all lists from given filepath into new TreeMap
-		// try { load file from filePath } catch no file exists {}
+	public File loadFile() {
+
+		FileChooser fileChooser = new FileChooser();
+
+		fileChooser.getExtensionFilters().add(
+				new FileChooser.ExtensionFilter("Text file (*.txt)", "*.txt")
+		);
+
+		fileChooser.setInitialDirectory(new File(getFilePath().toString()));
+
+		//if file has been chosen, load it
+		return fileChooser.showOpenDialog(null);
 	}
 
-	public void saveFile(Path filePath) {
-		// for each item in TodoListArray:
-		// save each object filepath with this.listName
+	public void saveFile() {
+		FileChooser fileChooser = new FileChooser();
+
+		fileChooser.setInitialFileName("default");
+
+		fileChooser.getExtensionFilters().add(
+				new FileChooser.ExtensionFilter("Text file (*.txt)", "*.txt")
+		);
+		fileChooser.setInitialDirectory(new File(getFilePath().toString()));
+
+		//if file has been chosen, save it
+		File file = fileChooser.showSaveDialog(null);
+
+		//set current file path to ManageFile's filePath
+		setFilePath(file.toPath());
+
 	}
 
-	public void loadList(String fileName, Path filePath) {
-		// use try/catch to load single list from given file path
-		// try { load fileName from filePath } catch Exception {}
-	}
-
-	public void saveList(String fileName, Path filePath) {
-		// save file as fileName + ".txt" to filePath
-	}
 
 }

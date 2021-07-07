@@ -5,22 +5,22 @@
 
 package ucf.assignments;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.Callback;
-import javafx.scene.control.TableColumn;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class Controller {
+
 	@FXML
 	private Label todoListLabel;
 	@FXML
@@ -36,13 +36,15 @@ public class Controller {
 	@FXML
 	private TableColumn<Todo, String> todoFieldColumn;
 	@FXML
-	private TableColumn<Todo, Boolean> boolColumn;
-
-
+	private TableColumn<Todo, String> boolColumn;
+	@FXML
+	private ManageFile mf;
 
 	// on app start:
 
 	public void initialize() {
+
+		mf = new ManageFile();
 
 		// make tableViewContainer editable anytime
 		tableViewContainer.setEditable(true);
@@ -50,29 +52,20 @@ public class Controller {
 		// make todoLists an FXCollections with an observable array list
 		data = FXCollections.observableArrayList();
 
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		dueDatePicker.setValue(LocalDate.now());
+		todoField.setText("Todo");
+
 		// use cell factory to set column data types
-		dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+
+		dueDateColumn.setCellValueFactory(cellData -> cellData.getValue().dueDateProperty());
 		dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		dueDateColumn.setOnEditCommit(
-				cell -> ( cell.getTableView().getItems().get(
-						cell.getTablePosition().getRow())
-				).setTodoText(cell.getNewValue())
-		);
 
-
-		todoFieldColumn.setCellValueFactory(new PropertyValueFactory<>("todoText"));
+		todoFieldColumn.setCellValueFactory(cellData -> cellData.getValue().todoTextProperty());
 		todoFieldColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		todoFieldColumn.setOnEditCommit(
-				date -> ( date.getTableView().getItems().get(
-						date.getTablePosition().getRow())
-				).setTodoText(date.getNewValue())
-		);
 
-		// FUCK ME THIS BOOLEAN CHECKBOX SHIT IS HARD
-
-		boolColumn.setCellFactory(boolColumn -> new CheckBoxTableCell<>());
-		boolColumn.setCellValueFactory(param -> param.getValue().getBool());
-		// possibly replace this with drop-down menu options instead
+		boolColumn.setCellValueFactory(cellData -> cellData.getValue().boolProperty());
+		boolColumn.setCellFactory(ComboBoxTableCell.forTableColumn("yes", "no"));
 
 
 		// set items for listViewContainer from ObservableList
@@ -83,76 +76,78 @@ public class Controller {
 	}
 
 	// on user button press:
-	
+
 	@FXML
 	public void clickAddList(ActionEvent actionEvent) {
 		// launch a new TodoList app
+		try {
+			new App().start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	@FXML
 	public void clickDeleteList(ActionEvent actionEvent) {
 		// if file exists based on listName, delete file and make blank file
+		// clear program of data
 	}
-	
+
+	@FXML
+	public void clickShowAll(ActionEvent actionEvent) {
+		// show all objects
+	}
+
 	@FXML
 	public void clickShowCompleted(ActionEvent actionEvent) {
 		// make objects that have completed=true to be visible in each column
+
 	}
-	
+
 	@FXML
-	public void clickHideCompleted(ActionEvent actionEvent) {
+	public void clickShowIncomplete(ActionEvent actionEvent) {
 		// make objects that have completed=false invisible in each column
 	}
 
 	@FXML
 	public void clickNewTodo(ActionEvent actionEvent) {
 		// add new object with the values selected in the bottom bar containers
-		if(dueDatePicker == null) {
-			data.add(new Todo(
-					LocalDate.now().toString(),
-					todoField.getText()));
-		} else {
-			data.add(new Todo(
-					dueDatePicker.getValue().toString(),
-					todoField.getText()));
-		}
 
-			// reset the date
-			dueDatePicker.getEditor().clear();
-			// reset text field
-			todoField.clear();
+		data.add(new Todo(
+				dueDatePicker.getValue(),
+				todoField.getText()));
+
+		// reset the date
+		dueDatePicker.setValue(LocalDate.now());
+		// reset text field
+		todoField.setText("Todo");
 	}
 
 	public void clickDeleteTodo(ActionEvent actionEvent) {
 		// if TodoItem is selected:
-		// TodoList.delTodo(selected TodoItem)
+		// delete selected item at tableView index
 		// refresh column views
+		int selectedIndex = tableViewContainer.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			tableViewContainer.getItems().remove(selectedIndex);
+		}
 	}
 
 	@FXML
 	public void menuLoadFile(ActionEvent actionEvent) {
-		// run Path path = ManageFile.getFilePath()
-		// run ManageFile.loadFile(path)
-	}
 
-	@FXML
-	public void menuLoadList(ActionEvent actionEvent) {
-		// run Path path = ManageFile.getFilePath()
-		// run String name = ManageFile.getFileName()
-		// run ManageFile.loadList(path, name);
+		File file = this.mf.loadFile();
+
+
 	}
 
 	@FXML
 	public void menuSaveFile(ActionEvent actionEvent) {
 		// Path path = ManageFile.getFilePath()
 		// run ManageFile.saveFile(path)
-	}
+		// use java FileChooser <----- IMPORTANT !!!!
 
-	@FXML
-	public void menuSaveList(ActionEvent actionEvent) {
-		// run Path path = ManageFile.getFilePath()
-		// run String name = ManageFile.getFileName()
-		// run ManageFile.saveList(path, name);
+		this.mf.saveFile();
 	}
 
 	@FXML
@@ -163,7 +158,7 @@ public class Controller {
 
 	@FXML
 	public void clickAbout(ActionEvent actionEvent) {
-	}
 
+	}
 
 }
