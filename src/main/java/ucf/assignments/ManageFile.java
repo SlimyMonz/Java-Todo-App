@@ -5,10 +5,15 @@
 
 package ucf.assignments;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 
-import java.io.File;
+import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManageFile {
 
@@ -45,36 +50,41 @@ public class ManageFile {
 		// this.filePath = filePath
 	}
 	
-	public File loadFile() {
+	public Object loadFile(File file) {
 
-		FileChooser fileChooser = new FileChooser();
+		return readFile(file.toPath());
 
-		fileChooser.getExtensionFilters().add(
-				new FileChooser.ExtensionFilter("Text file (*.txt)", "*.txt")
-		);
-
-		fileChooser.setInitialDirectory(new File(getFilePath().toString()));
-
-		//if file has been chosen, load it
-		return fileChooser.showOpenDialog(null);
 	}
 
-	public void saveFile() {
-		FileChooser fileChooser = new FileChooser();
-
-		fileChooser.setInitialFileName("default");
-
-		fileChooser.getExtensionFilters().add(
-				new FileChooser.ExtensionFilter("Text file (*.txt)", "*.txt")
-		);
-		fileChooser.setInitialDirectory(new File(getFilePath().toString()));
-
-		//if file has been chosen, save it
-		File file = fileChooser.showSaveDialog(null);
+	public void saveFile(File file, ArrayList<Todo> data) {
 
 		//set current file path to ManageFile's filePath
 		setFilePath(file.toPath());
 
+		//users Serializer to write file
+		writeFile(file, data);
+
+	}
+
+	public void writeFile(File file, ArrayList<Todo> data) {
+
+		try {
+			ObjectOutputStream outputStream = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
+			outputStream.writeObject(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public Object readFile(Path file) {
+		try {
+			ObjectInputStream inputStream = new ObjectInputStream(Files.newInputStream(file));
+			return inputStream.readObject();
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 

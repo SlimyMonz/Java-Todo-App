@@ -12,11 +12,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Controller {
@@ -38,12 +42,16 @@ public class Controller {
 	@FXML
 	private TableColumn<Todo, String> boolColumn;
 	@FXML
+	private FileChooser fileChooser;
+	@FXML
 	private ManageFile mf;
+
 
 	// on app start:
 
 	public void initialize() {
 
+		fileChooser = new FileChooser();
 		mf = new ManageFile();
 
 		// make tableViewContainer editable anytime
@@ -60,13 +68,24 @@ public class Controller {
 
 		dueDateColumn.setCellValueFactory(cellData -> cellData.getValue().dueDateProperty());
 		dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		dueDateColumn.setOnEditCommit(
+				(TableColumn.CellEditEvent<Todo, String> t) ->
+						( t.getTableView().getItems().get(
+								t.getTablePosition().getRow())
+						).setTodoText(t.getNewValue())
+		);
 
 		todoFieldColumn.setCellValueFactory(cellData -> cellData.getValue().todoTextProperty());
 		todoFieldColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		todoFieldColumn.setOnEditCommit(
+				(TableColumn.CellEditEvent<Todo, String> t) ->
+						( t.getTableView().getItems().get(
+								t.getTablePosition().getRow())
+						).setTodoText(t.getNewValue())
+		);
 
 		boolColumn.setCellValueFactory(cellData -> cellData.getValue().boolProperty());
 		boolColumn.setCellFactory(ComboBoxTableCell.forTableColumn("yes", "no"));
-
 
 		// set items for listViewContainer from ObservableList
 		tableViewContainer.setItems(data);
@@ -136,7 +155,17 @@ public class Controller {
 	@FXML
 	public void menuLoadFile(ActionEvent actionEvent) {
 
-		File file = this.mf.loadFile();
+		FileChooser fileChooser = new FileChooser();
+
+		fileChooser.getExtensionFilters().add(
+				new FileChooser.ExtensionFilter("Text file (*.txt)", "*.txt")
+		);
+
+		fileChooser.setInitialDirectory(new File(mf.getFilePath().toString()));
+
+		//if file has been chosen, load it
+		File file = fileChooser.showOpenDialog(null);
+
 
 
 	}
@@ -147,7 +176,30 @@ public class Controller {
 		// run ManageFile.saveFile(path)
 		// use java FileChooser <----- IMPORTANT !!!!
 
-		this.mf.saveFile();
+		ArrayList<Todo> listofTodos = new ArrayList();
+
+		for (Todo todo : data) listofTodos.add(todo);
+
+		System.out.println(listofTodos);
+
+		fileChooser.setInitialFileName("default");
+
+		fileChooser.getExtensionFilters().add(
+				new FileChooser.ExtensionFilter("Text file (*.txt)", "*.txt")
+		);
+
+		fileChooser.setInitialDirectory(new File(mf.getFilePath().toString()));
+
+		File file = fileChooser.showSaveDialog(new Stage());
+
+
+
+		if (file != null) {
+			mf.saveFile(file, listofTodos);
+		}
+
+
+
 	}
 
 	@FXML

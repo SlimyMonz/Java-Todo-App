@@ -5,22 +5,16 @@
 
 package ucf.assignments;
 
+import javafx.collections.ObservableList;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
+public class TodoList implements Serializable {
 
-public class TodoList {
-
-	private String listName;
-	private ArrayList<Todo> todoList;
+	private ArrayList<Todo> todoList = new ArrayList<>();
 
 	public TodoList() {
-		// set default name
-		// create new empty ArrayList
-	}
-
-	public String getListName() {
-		// return String listName
-		return "";
 	}
 
 	public void setListName(String string) {
@@ -28,10 +22,12 @@ public class TodoList {
 		// this.listName = string
 	}
 
-	public void addTodo() {
+	public void addTodo(Todo item) {
 		// create new todo object
 		//  append to Arraylist
 		// ArrayList.add(new todo())
+		this.todoList.add(item);
+
 	}
 
 	public void delTodo() {

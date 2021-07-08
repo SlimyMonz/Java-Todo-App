@@ -8,10 +8,12 @@ package ucf.assignments;
 
 import javafx.beans.property.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Todo {
+public class Todo implements Serializable {
 
+	// ALL OF THIS MUST DISAPPEAR FUCK ME
 	private final ObjectProperty<String> dueDate = new SimpleObjectProperty<>();
 	private final ObjectProperty<String> todoText = new SimpleObjectProperty<>();
 	private final ObjectProperty<String> bool = new SimpleObjectProperty<>();
