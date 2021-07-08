@@ -16,7 +16,7 @@ public class Todo implements Serializable {
 	// ALL OF THIS MUST DISAPPEAR FUCK ME
 	private String dueDate;
 	private String todoText;
-	private String bool;
+	private Boolean bool;
 
 	// blank and parameter constructors
 	public Todo() {
@@ -25,7 +25,7 @@ public class Todo implements Serializable {
 		// set default Boolean to false
 		this.dueDate = (LocalDate.now().toString());
 		this.todoText = ("");
-		this.bool = ("no");
+		this.bool = false;
 
 	}
 
@@ -39,7 +39,7 @@ public class Todo implements Serializable {
 				this.todoText = (string);
 			}
 
-		this.bool = ("no");
+		this.bool = false;
 	}
 
 
@@ -54,7 +54,7 @@ public class Todo implements Serializable {
 		return todoText;
 	}
 
-	public String getBool() {
+	public Boolean getBool() {
 		// return boolean of completed value
 		return bool;
 	}
@@ -71,10 +71,10 @@ public class Todo implements Serializable {
 		this.todoText = (string);
 	}
 
-	public void setBool(String bool) {
+	public void setBool(boolean bool) {
 		// set value based off of boolean parameter
 		// this.setCompleted = bool
-		this.bool = (bool.toString());
+		this.bool = bool;
 	}
 
 

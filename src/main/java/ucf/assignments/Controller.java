@@ -5,25 +5,25 @@
 
 package ucf.assignments;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.io.File;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -44,7 +44,7 @@ public class Controller {
 	@FXML
 	private TableColumn<Todo, String> todoFieldColumn;
 	@FXML
-	private TableColumn<Todo, String> boolColumn;
+	private TableColumn<Todo, Boolean> boolColumn;
 	@FXML
 	private FileChooser fileChooser;
 	@FXML
@@ -68,17 +68,11 @@ public class Controller {
 		dueDatePicker.setValue(LocalDate.now());
 		todoField.setText("Todo");
 
-		Callback<TableColumn<Todo, String>, TableCell<Todo, String>> dateCellFactory
-				= (TableColumn<Todo, String> param) -> new TextFieldTableCell<>();
-		Callback<TableColumn<Todo, String>, TableCell<Todo, String>> cellFactory
-				= (TableColumn<Todo, String> param) -> new TextFieldTableCell<>();
-		Callback<TableColumn<Todo, String>, TableCell<Todo, String>> comboBoxCellFactory
-				= (TableColumn<Todo, String> param) -> new ComboBoxTableCell<>("yes", "no");
 
 		// use cell factory to set column data types
 
 		dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-		dueDateColumn.setCellFactory(dateCellFactory);
+		dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		dueDateColumn.setOnEditCommit(
 				(TableColumn.CellEditEvent<Todo, String> t) ->
 						( t.getTableView().getItems().get(
@@ -87,7 +81,7 @@ public class Controller {
 		);
 
 		todoFieldColumn.setCellValueFactory(new PropertyValueFactory<>("todoText"));
-		todoFieldColumn.setCellFactory(cellFactory);
+		todoFieldColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		todoFieldColumn.setOnEditCommit(
 				(TableColumn.CellEditEvent<Todo, String> t) ->
 						( t.getTableView().getItems().get(
@@ -96,9 +90,9 @@ public class Controller {
 		);
 
 		boolColumn.setCellValueFactory(new PropertyValueFactory<>("bool"));
-		boolColumn.setCellFactory(comboBoxCellFactory);
-		boolColumn.setOnEditCommit(
-				(TableColumn.CellEditEvent<Todo, String> t) ->
+		boolColumn.setCellFactory(CheckBoxTableCell.forTableColumn(boolColumn));
+		boolColumn.setOnEditCancel(
+				(TableColumn.CellEditEvent<Todo, Boolean> t) ->
 						( t.getTableView().getItems().get(
 								t.getTablePosition().getRow())
 						).setBool(t.getNewValue())
@@ -180,10 +174,10 @@ public class Controller {
 
 		Object loadFile = mf.readFile(file.toPath());
 
-		ArrayList<Todo> list = new ArrayList<>((Collection<? extends Todo>) loadFile);
-
+		// clear all the current items
 		data.clear();
-		data.addAll(list);
+		// add all the loaded items
+		data.addAll((ArrayList<Todo>) loadFile);
 
 	}
 
@@ -196,9 +190,7 @@ public class Controller {
 		ArrayList<Todo> listofTodos = new ArrayList<>(data);
 
 
-		System.out.println(listofTodos);
-
-		fileChooser.setInitialFileName("default");
+		fileChooser.setInitialFileName(mf.getFileName());
 
 		fileChooser.setInitialDirectory(new File(mf.getFilePath()));
 
@@ -206,7 +198,7 @@ public class Controller {
 
 
 		if (file != null) {
-			mf.saveFile(file, listofTodos);
+			mf.writeFile(file, listofTodos);
 		}
 
 
