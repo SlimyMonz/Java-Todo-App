@@ -11,15 +11,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -64,19 +68,26 @@ public class Controller {
 		dueDatePicker.setValue(LocalDate.now());
 		todoField.setText("Todo");
 
+		Callback<TableColumn<Todo, String>, TableCell<Todo, String>> dateCellFactory
+				= (TableColumn<Todo, String> param) -> new TextFieldTableCell<>();
+		Callback<TableColumn<Todo, String>, TableCell<Todo, String>> cellFactory
+				= (TableColumn<Todo, String> param) -> new TextFieldTableCell<>();
+		Callback<TableColumn<Todo, String>, TableCell<Todo, String>> comboBoxCellFactory
+				= (TableColumn<Todo, String> param) -> new ComboBoxTableCell<>("yes", "no");
+
 		// use cell factory to set column data types
 
-		dueDateColumn.setCellValueFactory(cellData -> cellData.getValue().dueDateProperty());
-		dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+		dueDateColumn.setCellFactory(dateCellFactory);
 		dueDateColumn.setOnEditCommit(
 				(TableColumn.CellEditEvent<Todo, String> t) ->
 						( t.getTableView().getItems().get(
 								t.getTablePosition().getRow())
-						).setTodoText(t.getNewValue())
+						).setDueDate(t.getNewValue())
 		);
 
-		todoFieldColumn.setCellValueFactory(cellData -> cellData.getValue().todoTextProperty());
-		todoFieldColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		todoFieldColumn.setCellValueFactory(new PropertyValueFactory<>("todoText"));
+		todoFieldColumn.setCellFactory(cellFactory);
 		todoFieldColumn.setOnEditCommit(
 				(TableColumn.CellEditEvent<Todo, String> t) ->
 						( t.getTableView().getItems().get(
@@ -84,8 +95,14 @@ public class Controller {
 						).setTodoText(t.getNewValue())
 		);
 
-		boolColumn.setCellValueFactory(cellData -> cellData.getValue().boolProperty());
-		boolColumn.setCellFactory(ComboBoxTableCell.forTableColumn("yes", "no"));
+		boolColumn.setCellValueFactory(new PropertyValueFactory<>("bool"));
+		boolColumn.setCellFactory(comboBoxCellFactory);
+		boolColumn.setOnEditCommit(
+				(TableColumn.CellEditEvent<Todo, String> t) ->
+						( t.getTableView().getItems().get(
+								t.getTablePosition().getRow())
+						).setBool(t.getNewValue())
+		);
 
 		// set items for listViewContainer from ObservableList
 		tableViewContainer.setItems(data);
@@ -135,7 +152,6 @@ public class Controller {
 		data.add(new Todo(
 				dueDatePicker.getValue(),
 				todoField.getText()));
-
 		// reset the date
 		dueDatePicker.setValue(LocalDate.now());
 		// reset text field
@@ -157,16 +173,17 @@ public class Controller {
 
 		FileChooser fileChooser = new FileChooser();
 
-		fileChooser.getExtensionFilters().add(
-				new FileChooser.ExtensionFilter("Text file (*.txt)", "*.txt")
-		);
-
-		fileChooser.setInitialDirectory(new File(mf.getFilePath().toString()));
+		fileChooser.setInitialDirectory(new File(mf.getFilePath()));
 
 		//if file has been chosen, load it
 		File file = fileChooser.showOpenDialog(null);
 
+		Object loadFile = mf.readFile(file.toPath());
 
+		ArrayList<Todo> list = new ArrayList<>((Collection<? extends Todo>) loadFile);
+
+		data.clear();
+		data.addAll(list);
 
 	}
 
@@ -176,22 +193,16 @@ public class Controller {
 		// run ManageFile.saveFile(path)
 		// use java FileChooser <----- IMPORTANT !!!!
 
-		ArrayList<Todo> listofTodos = new ArrayList();
+		ArrayList<Todo> listofTodos = new ArrayList<>(data);
 
-		for (Todo todo : data) listofTodos.add(todo);
 
 		System.out.println(listofTodos);
 
 		fileChooser.setInitialFileName("default");
 
-		fileChooser.getExtensionFilters().add(
-				new FileChooser.ExtensionFilter("Text file (*.txt)", "*.txt")
-		);
-
-		fileChooser.setInitialDirectory(new File(mf.getFilePath().toString()));
+		fileChooser.setInitialDirectory(new File(mf.getFilePath()));
 
 		File file = fileChooser.showSaveDialog(new Stage());
-
 
 
 		if (file != null) {

@@ -5,51 +5,32 @@
 
 package ucf.assignments;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ManageFile {
 
-	private FileChooser fileChooser;
-	private String fileName;
-	private final Path defaultPath = Path.of(System.getProperty("user.home"));
-	private Path filePath;
+	private final String defaultPath = System.getProperty("user.home");
 
 	public ManageFile() {
 	}
 
-	public String getFileName() {
-		// returns the fileName string for this object
-		return fileName;
-	}
 
-	public void setFileName(String fileName) {
-		// this.fileName equals fileName
-		this.fileName = fileName;
-	}
-
-	public Path getFilePath() {
+	public String getFilePath() {
 		// if filePath.isNotEmpty() 
 		// return filePath
 		// else return defaultPath
-		if (filePath == null) {
 			return defaultPath;
-		} else {
-			return filePath;
-		}
 	}
 
-	public void setFilePath(Path filePath) {
-		// this.filePath = filePath
-	}
-	
+
 	public Object loadFile(File file) {
 
 		return readFile(file.toPath());
@@ -59,8 +40,6 @@ public class ManageFile {
 	public void saveFile(File file, ArrayList<Todo> data) {
 
 		//set current file path to ManageFile's filePath
-		setFilePath(file.toPath());
-
 		//users Serializer to write file
 		writeFile(file, data);
 

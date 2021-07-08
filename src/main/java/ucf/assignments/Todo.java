@@ -14,83 +14,68 @@ import java.time.LocalDate;
 public class Todo implements Serializable {
 
 	// ALL OF THIS MUST DISAPPEAR FUCK ME
-	private final ObjectProperty<String> dueDate = new SimpleObjectProperty<>();
-	private final ObjectProperty<String> todoText = new SimpleObjectProperty<>();
-	private final ObjectProperty<String> bool = new SimpleObjectProperty<>();
+	private String dueDate;
+	private String todoText;
+	private String bool;
 
 	// blank and parameter constructors
 	public Todo() {
 		// set Date to blank
 		// set default string to blank ""
 		// set default Boolean to false
-		this.dueDate.setValue(LocalDate.now().toString());
-		this.todoText.setValue("");
-		this.bool.setValue("no");
+		this.dueDate = (LocalDate.now().toString());
+		this.todoText = ("");
+		this.bool = ("no");
 
 	}
 
 	public Todo(LocalDate date, String string) {
 		// set Date to datepicker date from parameter
 		// set string to parameter from GUI
-		this.dueDate.setValue(date.toString());
+		this.dueDate = (date.toString());
 		if (string.length() > 256) {
-			this.todoText.setValue(string.substring(0, 256));}
+			this.todoText = (string.substring(0, 256));}
 			else {
-				this.todoText.setValue(string);
+				this.todoText = (string);
 			}
 
-		this.bool.setValue("no");
+		this.bool = ("no");
 	}
 
 
 	// collection of Getters
 	public String getDueDate() {
 		// return Date value of object
-		return dueDate.get();
+		return dueDate;
 	}
 
 	public String getTodoText() {
 		// return todoText String
-		return todoText.get();
+		return todoText;
 	}
 
 	public String getBool() {
 		// return boolean of completed value
-		return bool.get();
+		return bool;
 	}
 
 
 	// collection of Setters
-	public void setDueDate(LocalDate date) {
+	public void setDueDate(String date) {
 		// this.dueDate = date
-		this.dueDate.set(date.toString());
+		this.dueDate = (date.toString());
 	}
 
 	public void setTodoText(String string) {
 		// this.todoText equals given todoText String parameter
-		this.todoText.set(string);
+		this.todoText = (string);
 	}
 
-	public void setValue(Boolean bool) {
+	public void setBool(String bool) {
 		// set value based off of boolean parameter
 		// this.setCompleted = bool
-		this.bool.set(bool.toString());
+		this.bool = (bool.toString());
 	}
-
-
-	// collection of returning Observable Values
-	public final ObjectProperty<String> dueDateProperty() {
-		return dueDate;
-	}
-
-	public final ObjectProperty<String> todoTextProperty() { // property getter
-		return todoText;
-	}
-
-	public final ObjectProperty<String> boolProperty() { // property getter
-		return bool;
-	}
-
 
 
 }
