@@ -39,7 +39,7 @@ public class ManageFile {
 		// if filePath.isEmpty()
 		// return defaultPath
 		// else return filePath
-		if (filePath.isEmpty()) {
+		if (filePath == null) {
 			return defaultPath;
 		} else {
 			return filePath;

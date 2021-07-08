@@ -63,7 +63,7 @@ public class Todo implements Serializable {
 	// collection of Setters
 	public void setDueDate(String date) {
 		// this.dueDate = date
-		this.dueDate = (date.toString());
+		this.dueDate = date;
 	}
 
 	public void setTodoText(String string) {
@@ -71,7 +71,7 @@ public class Todo implements Serializable {
 		this.todoText = (string);
 	}
 
-	public void setBool(boolean bool) {
+	public void setBool(Boolean bool) {
 		// set value based off of boolean parameter
 		// this.setCompleted = bool
 		this.bool = bool;
