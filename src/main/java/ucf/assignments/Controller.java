@@ -65,9 +65,9 @@ public class Controller {
 		data = FXCollections.observableArrayList();
 
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+
 		dueDatePicker.setValue(LocalDate.now());
 		todoField.setText("Todo");
-
 
 		// use cell factory to set column data types
 
