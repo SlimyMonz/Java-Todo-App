@@ -22,15 +22,18 @@ public class ManageFile {
 
 
 	public ManageFile() {
+		// initializes the file with a default name
 		this.fileName = "default";
 	}
 
 
 	public String getFileName() {
+		// return string of file name
 		return fileName;
 	}
 
 	public void setFileName(File file) {
+		// set file name
 		this.fileName = file.getName();
 	}
 
@@ -47,13 +50,14 @@ public class ManageFile {
 	}
 
 	public void setFilePath(File file) {
-
+		// return the folder that the file is stored in
 		this.filePath = file.getParent();
 	}
 
 
 	public void writeFile(File file, ArrayList<Todo> data) {
-
+		// get file and object data from parameter
+		// write data to a new file based on file path
 		try {
 			ObjectOutputStream outputStream = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
 			outputStream.writeObject(data);
@@ -63,6 +67,8 @@ public class ManageFile {
 	}
 
 	public Object readFile(Path file) {
+		// read the data
+		// return data as object
 		try {
 			ObjectInputStream inputStream = new ObjectInputStream(Files.newInputStream(file));
 			return inputStream.readObject();

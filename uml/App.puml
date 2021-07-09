@@ -1,14 +1,38 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class App {
+class JavaFX.App {
 
     -start()
     -main()
 }
 
-class Controller {
+class JavaFX.About {
+    +getText()
+    +displayPopup()
+}
 
+class Columns {
+    +setDateColumn()
+    +setTextColumn()
+    +setBoolColumn()
+}
+
+class JavaFX.Controller {
+
+
+	-todoField;
+	-dueDatePicker;
+	-tableViewContainer;
+	-data;
+	-dataTemp;
+	-dueDateColumn;
+	-todoFieldColumn;
+	-boolColumn;
+	-fileChooser;
+	-mf;
+
+    +initialize()
     +clickAddList()
     +clickDeleteList()
     +clickShowCompleted()
@@ -20,15 +44,13 @@ class Controller {
     +menuSaveFile()
     +menuSaveList()
     +menuQuit()
-
 }
 
 class ManageFile {
 
-    -String fileName
-    -Path filePath
-
-    +ManageFile()
+    -fileName
+    -filePath
+    -defaultPath
 
     +setFileName()
     +getFileName()
@@ -36,43 +58,15 @@ class ManageFile {
     +setFilePath()
     +getFilePath()
 
-    +loadFile()
-    +saveFile()
-
-    +loadList()
-    +saveList()
-
-}
-
-class TodoListArray {
-    -Treemap<String, TodoList>
-
-    +TodoListArray()
-
-    +addTodoList()
-    +delTodoList()
-}
-
-class TodoList {
-    -String nameOfList
-    -ArrayList<Todo> todoList
-
-    +TodoList()
-
-    +setListName()
-    +getListName()
-
-    +addTodo()
-    +delTodo()
+    +writeFile()
+    +readFile()
 }
 
 class Todo {
 
-    -Date dueDate
+    -String dueDate
     -String todoText
-    -Boolean completed
-
-    +Todo()
+    -Boolean bool
 
     +setTodoText()
     +getTodoText()
@@ -80,24 +74,22 @@ class Todo {
     +setDueDate()
     +getDueDate()
 
-    +setCompleted(Boolean)
-    +getCompleted()
+    +setBool()
+    +getBool()
 
 }
 
 
-JavaFX.GUI = App
-JavaFX.GUI = Controller
 
-App <--|> ManageFile
-ManageFile --|> TodoListArray
-ManageFile --|> TodoList
-Todo <|-> TodoList
-TodoList <|-> TodoListArray
+JavaFX.App => JavaFX.Controller
 
-ManageFile = Controller
-TodoList ==  Controller
-TodoListArray = Controller
+JavaFX.Controller => ManageFile
+JavaFX.Controller = Columns
+JavaFX.Controller ==> JavaFX.About
+Columns <==> Todo
+ManageFile <=> Todo
+ManageFile <=> Columns
+
 
 
 

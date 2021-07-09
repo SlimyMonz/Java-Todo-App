@@ -5,15 +5,13 @@
 
 package ucf.assignments;
 
-
-import javafx.beans.property.*;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
+// class must be Serializable to save to file
 public class Todo implements Serializable {
 
-	// ALL OF THIS MUST DISAPPEAR FUCK ME
+
 	private String dueDate;
 	private String todoText;
 	private Boolean bool;
@@ -32,13 +30,8 @@ public class Todo implements Serializable {
 	public Todo(LocalDate date, String string) {
 		// set Date to datepicker date from parameter
 		// set string to parameter from GUI
-		this.dueDate = (date.toString());
-		if (string.length() > 256) {
-			this.todoText = (string.substring(0, 256));}
-			else {
-				this.todoText = (string);
-			}
-
+		setDueDate(date.toString());
+		setTodoText(string);
 		this.bool = false;
 	}
 
@@ -67,8 +60,13 @@ public class Todo implements Serializable {
 	}
 
 	public void setTodoText(String string) {
+		// limit the string to 256 characters
 		// this.todoText equals given todoText String parameter
-		this.todoText = (string);
+		if (string.length() > 256) {
+			this.todoText = (string.substring(0, 256));}
+		else {
+			this.todoText = (string);
+		}
 	}
 
 	public void setBool(Boolean bool) {

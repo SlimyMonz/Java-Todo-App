@@ -10,13 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.ComboBoxTableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -50,8 +44,6 @@ public class Controller {
 	private FileChooser fileChooser;
 	@FXML
 	private ManageFile mf;
-	@FXML
-	private Stage about;
 
 
 	// on app start:
@@ -64,47 +56,29 @@ public class Controller {
 
 		// make tableViewContainer editable anytime
 		tableViewContainer.setEditable(true);
+		tableViewContainer.setPlaceholder(new Label("Check out HELP menu above for info."));
 
 		// make todoLists an FXCollections with an observable array list
 		data = FXCollections.observableArrayList();
 		dataTemp = FXCollections.observableArrayList();
 
-
+		// set default datepicker value
 		dueDatePicker.setValue(LocalDate.now());
 		todoField.setText("Todo");
 
-		// use cell factory to set column data types
+		// use Columns class to set column data types
+		Columns column = new Columns();
 
-		dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-		dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		dueDateColumn.setOnEditCommit(
-				(TableColumn.CellEditEvent<Todo, String> t) ->
-						( t.getTableView().getItems().get(
-								t.getTablePosition().getRow())
-						).setDueDate(t.getNewValue())
-		);
+		column.setDateColumn(dueDateColumn);
+		column.setTextColumn(todoFieldColumn);
+		column.setBoolColumn(boolColumn);
 
-		todoFieldColumn.setCellValueFactory(new PropertyValueFactory<>("todoText"));
-		todoFieldColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		todoFieldColumn.setOnEditCommit(
-				(TableColumn.CellEditEvent<Todo, String> t) ->
-						( t.getTableView().getItems().get(
-								t.getTablePosition().getRow())
-						).setTodoText(t.getNewValue())
-		);
-
-		boolColumn.setCellValueFactory(new PropertyValueFactory<>("bool"));
-		boolColumn.setCellFactory(ComboBoxTableCell.forTableColumn(true, false));
-		boolColumn.setOnEditCommit(
-				(TableColumn.CellEditEvent<Todo, Boolean> t) ->
-						( t.getTableView().getItems().get(
-								t.getTablePosition().getRow())
-						).setBool(t.getNewValue())
-		);
 
 		// set items for listViewContainer from ObservableList
 		tableViewContainer.setItems(data);
-		// add all the columns to the container
+
+		// clear columns to make sure container is empty, then add all the columns to the container
+		tableViewContainer.getColumns().clear();
 		tableViewContainer.getColumns().addAll(dueDateColumn, todoFieldColumn, boolColumn);
 
 	}
@@ -223,6 +197,7 @@ public class Controller {
 
 		File file = fileChooser.showSaveDialog(new Stage());
 
+		// if the file isn't empty/null, run three methods to save file
 		if (file != null) {
 			mf.setFileName(file);
 			mf.setFilePath(file);
@@ -241,9 +216,8 @@ public class Controller {
 
 	@FXML
 	public void clickAbout(ActionEvent actionEvent) {
-
+		// display About class popup
 		About.displayPopup();
-
 	}
 
 }

@@ -40,31 +40,36 @@ public class About {
 	}
 
 	public static void displayPopup() {
+		// create a new stage to display stuff
 		Stage popUp = new Stage();
 
+		// do not allow user to interact with app while stage is open
 		popUp.initModality(Modality.APPLICATION_MODAL);
 		popUp.setTitle("About");
 
-		Label label1= new Label(getText());
-		Button button1= new Button("Close");
-
+		// create new label that takes in String from getText() method
+		Label label1 = new Label(getText());
+		// create new button under the label
+		Button button1 = new Button("Close");
+		// set button action to close stage
 		button1.setOnAction(e -> popUp.close());
+		// set the spacing of the text and button so it's not touching the edges
+		VBox layout = new VBox(10);
 
-		VBox layout= new VBox(10);
-
-
+		// align everything to center
 		label1.setAlignment(Pos.CENTER);
 		label1.setPadding(new Insets(10, 10, 10, 10));
 		button1.setAlignment(Pos.BOTTOM_CENTER);
 
-
+		// add label and button to stage
 		layout.getChildren().addAll(label1, button1);
 		layout.setAlignment(Pos.CENTER);
 		layout.setPadding(new Insets(10, 10, 10, 10));
 
+		// create a new scene
+		Scene scene = new Scene(layout);
 
-		Scene scene= new Scene(layout);
-
+		// show the scene
 		popUp.setScene(scene);
 		popUp.showAndWait();
 
