@@ -30,8 +30,8 @@ public class ManageFile {
 		return fileName;
 	}
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setFileName(File file) {
+		this.fileName = file.getName();
 	}
 
 
@@ -46,8 +46,9 @@ public class ManageFile {
 		}
 	}
 
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
+	public void setFilePath(File file) {
+
+		this.filePath = file.getParent();
 	}
 
 

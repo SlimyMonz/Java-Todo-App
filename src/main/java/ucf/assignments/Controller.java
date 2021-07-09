@@ -10,7 +10,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -19,7 +22,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -48,6 +50,8 @@ public class Controller {
 	private FileChooser fileChooser;
 	@FXML
 	private ManageFile mf;
+	@FXML
+	private Stage about;
 
 
 	// on app start:
@@ -65,8 +69,6 @@ public class Controller {
 		data = FXCollections.observableArrayList();
 		dataTemp = FXCollections.observableArrayList();
 
-		// trying to figure out how to use this to make the Date Picker box not suck
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
 		dueDatePicker.setValue(LocalDate.now());
 		todoField.setText("Todo");
@@ -193,12 +195,17 @@ public class Controller {
 		//if file has been chosen, load it
 		File file = fileChooser.showOpenDialog(null);
 
-		Object loadFile = mf.readFile(file.toPath());
+		if (file != null) {
+			mf.setFileName(file);
+			mf.setFilePath(file);
 
-		// clear all the current items
-		data.clear();
-		// add all the loaded items
-		data.addAll((ArrayList<Todo>) loadFile);
+			Object loadFile = mf.readFile(file.toPath());
+
+			// clear all the current items
+			data.clear();
+			// add all the loaded items
+			data.addAll((ArrayList<Todo>) loadFile);
+		}
 
 	}
 
@@ -210,15 +217,15 @@ public class Controller {
 
 		ArrayList<Todo> listofTodos = new ArrayList<>(data);
 
-
 		fileChooser.setInitialFileName(mf.getFileName());
 
 		fileChooser.setInitialDirectory(new File(mf.getFilePath()));
 
 		File file = fileChooser.showSaveDialog(new Stage());
 
-
 		if (file != null) {
+			mf.setFileName(file);
+			mf.setFilePath(file);
 			mf.writeFile(file, listofTodos);
 		}
 
@@ -234,6 +241,8 @@ public class Controller {
 
 	@FXML
 	public void clickAbout(ActionEvent actionEvent) {
+
+		About.displayPopup();
 
 	}
 
