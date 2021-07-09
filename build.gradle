@@ -10,6 +10,8 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
+
+
 group 'org.monz'
 version '1.0-SNAPSHOT'
 
@@ -27,16 +29,23 @@ dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+    implementation 'org.openjfx:javafx:16'
+
+
+
 }
 
 javafx {
 
     version = '16'
     modules = ['javafx.base', 'javafx.graphics', 'javafx.controls', 'javafx.fxml']
+
 }
 
 
-
-
 //needed for Application -> Run
-mainClassName = 'ucf.assignments.App'
+application {
+    mainClass = 'ucf.assignments.App'
+}
+
+
