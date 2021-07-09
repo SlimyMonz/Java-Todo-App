@@ -31,8 +31,6 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
     implementation 'org.openjfx:javafx:16'
 
-
-
 }
 
 javafx {
