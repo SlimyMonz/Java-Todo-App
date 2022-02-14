@@ -1,4 +1,4 @@
-# hocker-cop3330-assignment4part2
+# Java Todo App
 
 Check out the HELP menu item when the app is opened.
 
